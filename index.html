@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+    <header class="header">
+        <div class="header__container">
+            <img src="https://static.tildacdn.com/tild3266-3366-4161-b734-353661623339/new_SF_logo_BLACK.svg" alt="" class="logo">
+            <div class="task__container">
+                <a href="index.html" class="task">Task 1</a>
+                <a href="task2.html" class="task">Task 2</a>
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <div class="content__wrapper">
+            <h1 class="title">Z - критерий для равенства долей</h1>
+            <p class="paragraph">
+                Этот критерий или, как мы договорились – инструмент, следует использовать тогда, когда мы хотим провести A/B тест для какой-либо фичи, в которой нас интересует конверсия после использования нашей фичи.
+                 В таком случае, мы можем представить наши данные в виде испытаний Бернули.
+            </p>        
+            <p class="paragraph">Кол-во пользователей,
+                 которые просто воспользовались нашей фичей, представим как m.
+            </p>
+            <p class="paragraph">
+                Кол-во пользователей, которые воспользовались нашей фичей и сделали полезное действие, представим как n.        
+            </p>
+            <p class="paragraph">
+                В таком случае, математическое ожидание или, в нашем случае, конверсия будет равна:
+                <span class="span_accent">p = n/m </span>- число успешных наблюдений ко всем наблюдениям.
+            </p>
+            <p class="paragraph">
+                Итак, как посчитать <b>Z</b> - критерий для двух долей для <b>A/B</b> теста:
+            </p>
+            <ul class="list list_numerated">
+                <li>Считаем математическое ожидание для каждой из групп:<br>
+                    <span class="span_indent span_accent">p1 = n1/m1</span>
+                    <span class="span_indent span_accent">p2 = n2/m2</span>
+                </li>
+                <li>Считаем стандартное отклонение для каждой из выборок:<br>
+                    <span class="span_indent span_accent">Sigma1 = (p1*(1-p1)/m1) ^1/2</span>
+                    <span class="span_indent span_accent">Sigma2 = (p2*(1-p2)/m2) ^1/2</span>
+                </li>
+                <li>Считаем z – статистику:<br>
+                    <span class="span_indent span_accent">Z = (p2-p1)/(Sigma1^2+Sigma2^2)^1/2</span>
+                </li>
+                <li> Дальше мы смотрим, какой <b>P-value</b>
+                    соответствует полученной <b>z</b> - статистики и делаем свой 	вывод.
+                </li>
+            </ul>
+            <p class="paragraph">
+                Итак, давайте разберем кейс, в котором мы делаем улучшение на странице оформления заказа для группы <b>B</b>, а в группе <b>A</b> все остается по-старому.
+                 И хотим понять, можем ли мы с уверенностью в 95% (<span class="span_accent">1-Ⲁ, при Ⲁ=5%</span>) сказать, что результат, который мы получим, будет не случаен.
+            </p>
+            <p class="paragraph">
+                В таком случае, у нас будут данные вот такого вида:
+            </p>        
+            <img src="image1.png" alt="" class="image">
+            <img src="image2.png" alt="" class="image">     
+            <p class="paragraph">
+                Если кратко:<br>
+                В группе <b>A</b> - 150 человек посетили страницу оформления заказа и 90 оформили заказ<br>
+                В группе <b>B</b> - 130 человек посетили страницу оформления заказа и 81 оформили заказ
+            </p>
+            <p class="paragraph">
+                Сразу сформулируем наши статистические гипотезы:<br>
+                <b>H0</b> - конверсия в группе <b>A</b> и <b>B</b> равны
+                <b>H1</b> - конверсии в группах не равны
+            </p>
+            
+             <p class="paragraph"> Давайте пройдемся по нашим формулам:<br>
+                    Математическое ожидание (в нашем случае, это еще и конверсия) равно:
+                    <span class="span_indent">Для группы <b>A</b>: <span class="span_accent">p1 = 90/150 = 0.6 </span></span>
+                    <span class="span_indent">Для группы <b>B</b>: <span class="span_accent">p2 = 81/130 = 0.62</span></span>
+            </p>
+            <p class="paragraph"> Дальше считаем стандартное отклонение для каждой из групп:
+                <span class="span_indent span_accent"> Sigma1 = (p1*(1-p1)/m1) ^(½) = (0.6*(1-0.6)/150)^(½) = 0.04 </span>
+                <span class="span_indent span_accent"> Sigma2 = (p2*(1-p2)/m2) ^(½) = (0.62*(1-0.62)/130)^(½) = 0.042</span>
+            </p>
+            <p class="paragraph"> Считаем <b>Z</b> статистику:
+                <span class="span_indent span_accent"> Z = (p2-p1)/(Sigma1^2+Sigma2^2)^½ = (0.62-0.6)/(0.04^2 + 0.042^2)^(½)=0.344      
+            </p>
+            <p class="paragraph"> Теперь, ищем значение P-value в табличке по полученному <b>Z</b>:
+                <span class="span_indent span_accent"> P-value (при Z ~ 0.34) = 0.3669, </span>
+                <span class="span_indent"> <a href="https://en.wikipedia.org/wiki/Standard_normal_table#Complementary_cumulative" target="_blank" class="link">Таблица значений</a></span>
+            </p>
+            <p class="paragraph">
+                А дальше, мы сравниваем полученную <b>Z</b> статистику с нашим пороговым значением <b>Ⲁ</b>.
+            </p>
+            <p class="paragraph">
+                В нашем случае, <span class="span_accent">P-value>Z -> 0.3669>0.05(5%)</span>, в таком случае, мы не можем отвергнуть нашу нулевую гипотезу о том, что конверсии равны.
+                Проще говоря, полученная разница в конверсии случайна между группами, и мы не можем сказать, что наши изменения статистически значимо повлияли на конверсию.
+            </p>
+        </div>
+    </main>
+<footer class="footer">
+    <div class="footer__container">
+        <a href="https://github.com/ZdarovaBro" class="footer__link" target="_blank">GitHub</a>
+        <p class="footer__subscription">&copy; Криско Иван</p>
+   </div>
+</footer>
+</body>
+</html>
